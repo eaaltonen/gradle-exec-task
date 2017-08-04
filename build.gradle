@@ -1,0 +1,12 @@
+defaultTasks 'makeFile'
+
+def output = 'file'
+
+task clean(type:Delete) {
+    delete output
+}
+
+task makeFile(type:Exec) {
+    group 'build'
+    commandLine 'touch', output
+}
