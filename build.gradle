@@ -6,7 +6,10 @@ task clean(type:Delete) {
     delete output
 }
 
-task makeFile(type:Exec) {
+task makeFile(type:PrintExec) {
     group 'build'
-    commandLine 'touch', output
+    printCmd true // or 1
+//    executable 'echo'
+//    args = ['echoing']
+    commandLine 'echo', "command line"
 }
