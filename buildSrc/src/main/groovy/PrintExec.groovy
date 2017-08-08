@@ -30,13 +30,17 @@ class PrintExec extends DefaultTask {
     @TaskAction
     def prExec() {
         if (printCmd) {
+            /* TODO should we precede the print with something?
+             * bash `set -x` precedes commands with '+'
+             * but a simple call to System.getenv('PS4') did not return it.
+             */
             if (commandLine) {
-                println "+${quoteOrEscapeWhitespace(commandLine)}"
+                println "${quoteOrEscapeWhitespace(commandLine)}"
                 project.exec{
                     commandLine this.commandLine
                 }
             } else {
-                println "+${executable} ${quoteOrEscapeWhitespace(args)}"
+                println "${executable} ${quoteOrEscapeWhitespace(args)}"
                 project.exec{
                     executable this.executable
                     args this.args
